@@ -68,8 +68,10 @@ Para quando não há mais melhorias
 
 ## 🧮 Exemplo de Saída
 
+```bash
 Atributos Selecionados: [27, 0, 7]
 Melhor Acurácia: 0.9473684210526315
+```
 
 ## 📚 Possíveis Expansões
 
