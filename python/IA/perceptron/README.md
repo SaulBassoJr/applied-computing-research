@@ -34,39 +34,57 @@ Instale com:
 pip install ucimlrepo
 ```
 
-## 🔍 Explicação do Funcionamento
+## 📄 Sobre o Código
 
-### 1. Carregamento do dataset
+Este projeto implementa um modelo de Perceptron para classificar dados do conjunto Breast Cancer Wisconsin (Diagnostic), disponível no repositório da UCI Machine Learning. Nele é aplicado o código do algoritmo de Hill Climbing para realizar a seleção de atributos que maximizem a acurácia do modelo.
 
-Usa a função fetch_ucirepo(id=17) para obter os dados do câncer de mama.
+### 🔍 Explicação do Funcionamento
 
-### 2. Pré-processamento
+- 1. Carregamento do dataset
 
-Os rótulos M e B são convertidos em 1 e 0.
+  - Usa a função fetch_ucirepo(id=17) para obter os dados do câncer de mama.
 
-O DataFrame é convertido em listas para facilitar os cálculos manuais.
+- 2. Pré-processamento
 
-### 3. Divisão treino/teste
+  - Os rótulos M e B são convertidos em 1 e 0.
+  - O DataFrame é convertido em listas para facilitar os cálculos manuais.
 
-Os dados são embaralhados e divididos (70% treino, 30% teste).
+- 3. Divisão treino/teste
 
-### 4. Treinamento do Perceptron
+  - Os dados são embaralhados e divididos (70% treino, 30% teste).
 
-Inicializa pesos com 0
+- 4. Treinamento do Perceptron
 
-Atualiza pesos a cada amostra, durante várias épocas
+  - Inicializa pesos com 0
+  - Atualiza pesos a cada amostra, durante várias épocas
+  - Usa função de ativação degrau
 
-Usa função de ativação degrau
+- 5. Hill Climbing para seleção de atributos
 
-### 5. Hill Climbing para seleção de atributos
+  - Começa com nenhum atributo selecionado
+  - A cada iteração, tenta adicionar o atributo que mais aumenta a acurácia
+  - Para quando não há mais melhorias
 
-Começa com nenhum atributo selecionado
+### ▶️ Ordem de Execução
 
-A cada iteração, tenta adicionar o atributo que mais aumenta a acurácia
+```bash
+⬇️ Importações
+⬇️ Carrega e prepara os dados
+⬇️ Converte X e y
+⬇️ Divide treino e teste
+⬇️ Define funções (ainda não executa)
+⬇️ Executa Hill Climbing (treina e testa modelos com diferentes atributos)
+⬇️ Imprime os resultados
+```
 
-Para quando não há mais melhorias
+### 🐍 Funções em Python utilizadas
 
-## 🧮 Exemplo de Saída
+- `zip()`: Agrupa elementos de duas listas, elemento a elemento.
+- `sum()`: Soma os elementos de um iterável.
+- `random.shuffle()`: Embaralha os dados para a divisão treino/teste.
+- `list comprehension`: Usada extensivamente para criar subconjuntos de atributos.
+
+### 🧮 Exemplo de Saída
 
 ```bash
 Atributos Selecionados: [27, 0, 7]
