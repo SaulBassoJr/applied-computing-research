@@ -17,6 +17,10 @@ Este script aplica o classificador **Naive Bayes** sobre o conjunto de dados "Co
 
 O Teorema de Bayes é a base matemática por trás do classificador Naive Bayes. Ele descreve a probabilidade de um evento A ocorrer, dado que o evento B ocorreu, usando as probabilidades condicionais. A fórmula é:
 
+<div align="center">
+<img src=https://github.com/user-attachments/assets/434afd9c-f6d2-4867-9653-2b10c1519372 width="600px"/>
+</div>
+
 ​Onde:
 
 - P(A|B) é a probabilidade de A dado B.
