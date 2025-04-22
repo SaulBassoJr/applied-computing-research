@@ -82,11 +82,13 @@ print(f"Republicanos previstos: {pred_counts.get(1, 0)} \n")
 
 
 # Exibir regras aprendidas
-print("\nRegras aprendidas:")
-rules = clf.out_model()
-if rules:
-    formatted_rules = [rule.replace('^', ' E ').replace('V', ' OU ') for rule in rules]
-    for i, rule in enumerate(formatted_rules, 1):
-        print(f"{i}. {rule}")
-else:
-    print("Nenhuma regra foi aprendida.")
+raw_rules = str(final_clf.ruleset_)
+clean_rules = raw_rules.strip("[]")  # remove os colchetes externos
+rule_list = clean_rules.split("] V [")  # separa as regras
+
+print("\nRegras aprendidas (formatadas):\n")
+for i, rule in enumerate(rule_list, 1):
+    conditions = rule.replace("[", "").replace("]", "").split("^")
+    formatted = " AND ".join(conditions)
+    print(f"Regra {i}: SE {formatted}")
+print(f"Regra {len(rule_list)+1}")
