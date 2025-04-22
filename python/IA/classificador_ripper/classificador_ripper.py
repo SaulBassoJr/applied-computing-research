@@ -54,6 +54,7 @@ for k in k_values:
             best_accuracy = accuracy
             best_k = k
             best_prune_size = prune_size
+            best_model = clf  # Salvar o melhor modelo
 
 # Treinamento final com os melhores hiperparâmetros
 final_clf = lw.RIPPER(k=best_k, prune_size=best_prune_size)
@@ -66,12 +67,26 @@ final_precision = precision_score(y_test, final_predictions)
 final_recall = recall_score(y_test, final_predictions)
 final_f1 = f1_score(y_test, final_predictions)
 
-print(f'Melhor acurácia: {final_accuracy:.4f}')
+print(f'\nMelhor acurácia: {final_accuracy:.4f}')
 print(f'Precisão: {final_precision:.4f}')
 print(f'Recall: {final_recall:.4f}')
 print(f'F1-score: {final_f1:.4f}')
-print(f'Melhores hiperparâmetros - k: {best_k}, prune_size: {best_prune_size}')
+print(f'Melhores hiperparâmetros K: {best_k},  prune_size: {best_prune_size} \n')
 
-# Exibição das regras
-rules = final_clf.out_model()
-print(rules)
+# Quantidade de previsões feitas para cada classe
+unique, counts = np.unique(final_predictions, return_counts=True)
+pred_counts = dict(zip(unique, counts))
+print(f"Previsões feitas pelo modelo:")
+print(f"Democratas previstos: {pred_counts.get(0, 0)}")
+print(f"Republicanos previstos: {pred_counts.get(1, 0)} \n")
+
+
+# Exibir regras aprendidas
+print("\nRegras aprendidas:")
+rules = clf.out_model()
+if rules:
+    formatted_rules = [rule.replace('^', ' E ').replace('V', ' OU ') for rule in rules]
+    for i, rule in enumerate(formatted_rules, 1):
+        print(f"{i}. {rule}")
+else:
+    print("Nenhuma regra foi aprendida.")
