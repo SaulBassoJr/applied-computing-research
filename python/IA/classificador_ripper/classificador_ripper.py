@@ -81,14 +81,20 @@ print(f"Democratas previstos: {pred_counts.get(0, 0)}")
 print(f"Republicanos previstos: {pred_counts.get(1, 0)} \n")
 
 
-# Exibir regras aprendidas
+# Exibe regras aprendidas
 raw_rules = str(final_clf.ruleset_)
 clean_rules = raw_rules.strip("[]")  # remove os colchetes externos
 rule_list = clean_rules.split("] V [")  # separa as regras
 
-print("\nRegras aprendidas (formatadas):\n")
+# Determinar a classe positiva
+classe_positiva = final_clf.pos_class
+nome_classe = 'Republicano' if classe_positiva == 1 else 'Democrata'
+
+# Imprime regras aprendidas
+print(f"Regras aprendidas (aplicam-se à classe: {nome_classe}):")
 for i, rule in enumerate(rule_list, 1):
     conditions = rule.replace("[", "").replace("]", "").split("^")
-    formatted = " AND ".join(conditions)
-    print(f"Regra {i}: SE {formatted}")
-print(f"Regra {len(rule_list)+1}")
+    formatted = " E ".join(conditions)
+    print(f"Regra {i}: SE {formatted} ENTÃO classe = {nome_classe}")
+
+print("\n")
