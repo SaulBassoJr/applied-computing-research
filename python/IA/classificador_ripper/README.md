@@ -98,17 +98,13 @@ Este projeto implementa um classificador RIPPER para prever a filiação partid�
 
    - Os dados são divididos aleatoriamente em 70% para treino e 30% para teste.
 
-4. Treinamento do Naive Bayes
-
-   - Utiliza `GaussianNB` da biblioteca `scikit-learn`.
-
-5. Hill Climbing para seleção de atributos
+4. Hill Climbing para seleção de atributos
 
    - Testa diferentes combinações de k e prune_size
    - Avalia a acurácia para cada combinação
    - Seleciona o melhor modelo encontrado
 
-6. Extração de Regra
+5. Extração de Regra
 
    - As regras aprendidas são exibidas de forma interpretável, no estilo:
      - **SE** condição1 **E** cindição2 **ENTÂO** classe = Republicano
